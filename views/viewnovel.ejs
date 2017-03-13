@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>五杀小说</title>
+    <link rel="stylesheet" href="/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="lib/jquery-easyui-1.5/jquery.min.js"></script>
+    <script src="lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <style>
+        li{
+            margin-bottom:10px;
+        }
+    </style>
+</head>
+<body style="background:#E9FAFF">
+<% include head.ejs%>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">小说详情</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-2" style="padding:10px">
+                                <img style="width:140px" src="<%=data.imgUrl%>" alt=""/>
+                            </div>
+                            <div class="col-md-3" style="margin-left:-60px;">
+                                <ul style="list-style: none;margin-top:10px;margin-left:-10px;">
+                                    <li style="font-size:24px;color:#ffab2e"><%=data.name%></li>
+                                    <li><%='作者：'+data.author%></li>
+                                    <li><%='更新：'+data.lastUpdateTime.toLocaleString()%></li>
+                                    <li>最新：<a href="/viewsection?id=<%=data._id%>&index=<%=data.sections.length-1%>"><%=data.sections[data.sections.length-1].name%></a></li>
+                                </ul>
+                                <div class="btn-group" style="margin-left:30px;">
+                                    <a href="" class="btn btn-default">加入书架</a>
+                                    <a href="/viewsection?id=<%=data._id%>&index=0" class="btn btn-primary">开始阅读</a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <span style="color:#0052A3;font-size:16px">小说描述：</span></span小说描述><div><%=data.description%></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7">
+            <div class="list-group">
+                <div href="#" class="list-group-item active">小说章节</div>
+                <%for(var item of data.sections){%>
+                    <a style="color:#0070a9" href="/viewsection?id=<%=data._id%>&index=<%=item.index%>" class="list-group-item"><%=item.name%></a>
+                <%}%>
+            </div>
+        </div>
+    </div>
+</div>
+<% include foot.ejs%>
+</body>
+</html>

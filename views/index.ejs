@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>五杀小说-<%=str%></title>
+    <link rel="stylesheet" href="/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="lib/jquery-easyui-1.5/jquery.min.js"></script>
+    <script src="lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+</head>
+<body style="background:#E9FAFF">
+<% include head.ejs%>
+<nav>
+    <ul class="pager">
+        <%if(page>1){%>
+            <li><a href="/?category=<%=str%>&searchTxt=<%=txt%>&page=<%=(page-1)%>"><span class="glyphicon glyphicon-chevron-left"></span>上一页</a></li>
+        <%}%>
+        <%if(isNextPage){%>
+            <li><a href="/?category=<%=str%>&searchTxt=<%=txt%>&page=<%=(page+1)%>">下一页<span class="glyphicon glyphicon-chevron-right"></span></a></li>
+        <%}%>
+    </ul>
+</nav>
+<div class="container">
+    <%for(var item of rows){%>
+    <div class="col-sm-6 col-md-3 col-lg-2" style="text-align: center">
+        <a href="/viewnovel?id=<%=item._id%>"><img src="<%= item.imgUrl %>" alt="" width="120" height="150" style="margin-top:40px;"></a>
+        <div style="font-weight: bolder;height:30px;line-height:30px;overflow: hidden" ><%="《"+item.name+"》"%></div>
+        <div style="font-weight: bolder"><%="作者："+item.author%></div>
+        <div>
+            <div style="height: 100px;overflow: hidden"><%=item.description%></div>
+        </div>
+        <div class="btn-group">
+            <a href="/viewnovel?id=<%=item._id%>" class="btn btn-primary" role="button">
+                关注章节
+            </a>
+            <a href="/viewnovel?id=<%=item._id%>" class="btn btn-default" role="button">
+                阅读
+            </a>
+        </div>
+    </div>
+    <%}%>
+</div>
+<% include foot.ejs%>
+</body>
+</html>

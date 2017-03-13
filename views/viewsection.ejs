@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>五杀小说</title>
+    <link rel="stylesheet" href="/lib/bootstrap-3.3.7-dist/css/bootstrap.min.css">
+    <script src="lib/jquery-easyui-1.5/jquery.min.js"></script>
+    <script src="lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <style>
+        li{
+            margin-bottom:10px;
+        }
+    </style>
+</head>
+<body style="background:#E9FAFF">
+<% include head.ejs%>
+<h2 style="text-align: center">
+    <%=novel.sections[index].name%>
+</h2>
+<div style="width:800px;margin:0 auto;border-left:2px dotted cadetblue;padding:10px;border-right:2px dotted cadetblue;font-size:20px;font-family:'微软雅黑';">
+    <%-content%>
+</div>
+<div class="container">
+    <div class="btn-group col-md-3 col-md-offset-5">
+        <%if(index>0){%>
+        <a href="/viewsection?id=<%=novel._id%>&index=<%=(index-1)%>" class="btn btn-primary"><span class=""></span>上一章</a>
+        <%}%>
+        <a href="/viewnovel?id=<%=novel._id%>" class="btn btn-primary">目录</a>
+        <%if(index<novel.sections.length-1){%>
+        <a href="/viewsection?id=<%=novel._id%>&index=<%=(index+1)%>" class="btn btn-primary">下一章<span class=""></span></a>
+        <%}%>
+    </div>
+</div>
+<% include foot.ejs%>
+</body>
+</html>
